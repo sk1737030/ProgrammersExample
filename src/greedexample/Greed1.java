@@ -1,10 +1,6 @@
 package greedexample;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class Greed1 {
     public int solution(int n, int[] lost, int[] reserve) {
         int answer = 0;
@@ -55,8 +51,7 @@ public class Greed1 {
         int[] reserve2 = {1};
 
         System.out.println(greed1.solution(5, lost, reserve)); // 5
-        // System.out.println(greed1.solution(5, lost1, reserve1)); // 4
-        // System.out.println(greed1.solution(3, lost2, reserve2)); // 2
-
+        System.out.println(greed1.solution(5, lost1, reserve1)); // 4
+        System.out.println(greed1.solution(3, lost2, reserve2)); // 2
     }
 }
