@@ -1,8 +1,6 @@
-package sortExample;
+package sortexample;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * 다른 사람 풀이
