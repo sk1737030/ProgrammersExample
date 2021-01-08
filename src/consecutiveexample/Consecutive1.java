@@ -3,6 +3,7 @@ package consecutiveexample;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * 같은 숫자는 싫어
@@ -12,6 +13,7 @@ public class Consecutive1 {
     public int[] solution(int[] arr) {
         int lastValue = -1;
         List<Integer> list = new ArrayList<>();
+
 
         for (int j : arr) {
             if (lastValue != j) {
