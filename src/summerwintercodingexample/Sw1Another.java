@@ -26,7 +26,6 @@ public class Sw1Another {
 
         String skills = "CBD";
         String[] skill_trees = {"BACDE", "CBADF", "AECB", "BDA"};
-        //String[] skill_trees = { "CBADF"};
 
         System.out.println(sw1.solution(skills, skill_trees)); // 2
     }
