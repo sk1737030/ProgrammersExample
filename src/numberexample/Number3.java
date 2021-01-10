@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * x만큼 간격이 있는 n개의 숫자
+ * https://programmers.co.kr/learn/courses/30/lessons/12954
+ */
 public class Number3 {
     public long[] solution(int x, int n) {
         List<Long> arrayList = new ArrayList<>(n);
