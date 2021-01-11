@@ -12,6 +12,10 @@ public class Number3 {
     public long[] solution(int x, int n) {
         List<Long> arrayList = new ArrayList<>(n);
 
+        System.out.println(n);
+
+/*
+
         long count = 0L;
 
         for (int i = 0; i < n; i++) {
@@ -19,6 +23,7 @@ public class Number3 {
             arrayList.add(count);
         }
 
+*/
         return arrayList.stream().mapToLong(Long::longValue).toArray();
     }
 
@@ -27,6 +32,7 @@ public class Number3 {
 
         int x = 2;
         int n = 5;
+
         System.out.println(Arrays.toString(number3.solution(x, n))); // {2,4,6,8,10}
     }
 }

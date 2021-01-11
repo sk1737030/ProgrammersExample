@@ -12,7 +12,6 @@ public class Number3Another {
         }
 
         return answer;
-
     }
 
     public static void main(String[] args) {
