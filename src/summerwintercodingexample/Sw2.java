@@ -29,6 +29,50 @@ public class Sw2 {
         return answer;
     }
 
+    private int fibonacci(int n) {
+        if (n < 2) {
+            return n;
+        }
+
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+
+    private int minimalGcd(int m, int n) {
+        if (n == 0) {
+            return m;
+        }
+        return minimalGcd(n, m % n);
+    }
+
+    private int gcd(int m, int n) {
+        if (m < n) {
+            int tmp = m;
+            m = n;
+            n = tmp;
+        }
+
+        if (m % n == 0)
+            return n;
+
+        return gcd(n, m % n);
+    }
+
+    private int func(int n) {
+        if (n == 0) {
+            return 0;
+        }
+
+        return n + func(n - 1);
+    }
+
+    private int factorial(int n) {
+        if (n == 0) {
+            return 1;
+        }
+
+        return n * factorial(n - 1);
+    }
+
     private static int max = 0;
 
     private void print2Binary(int n) {
@@ -60,7 +104,6 @@ public class Sw2 {
         }
 
     }
-
 
     private void getMaxBudgetResult(int[] d, List<Integer> arr, int start, int budget, int sums) {
         int size = arr.size();
@@ -114,16 +157,6 @@ public class Sw2 {
 
     public static void main(String[] args) {
         Sw2 sw2 = new Sw2();
-        //   sw2.print2Binary(14);
-        //  System.out.println();
-        /*int[] d1 = {1, 5, 2, 3, 4};
-        int[] d2 = {1, 2, 3, 4, 5, 5, 6, 1, 1, 54, 6, 7, 8, 9, 4, 3, 2, 1, 5};
-        int[] d3 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 5, 6, 7, 7, 8, 9, 9, 11111, 1111, 3, 2, 1, 1};
-        int[] d4 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 5, 6, 7, 7, 8, 9, 9, 3, 2, 1, 1};
-        */
-        //  System.out.println(sw2.sumArray(arr, arr.length));
-        //sw2.al(arr, arr2, 0, 3);
-        //sw2.alsearchs(arr, arr2, 0);
 
         int[] d = {1, 2, 3, 4, 5};
         int[] d5 = {2, 3, 4, 5, 6};
@@ -140,8 +173,9 @@ public class Sw2 {
         }
 
         sw2.getMaxBudgetResult2(d6, 0, 0, 100, 0);
+        budget이 100 넘어가면 타입아웃걸림..
         System.out.println(max);
-*/ // budget이 100 넘어가면 타입아웃걸림..
+        */
         System.out.println(sw2.solution(d, 9)); // 3
         System.out.println(sw2.solution(d5, 100)); // 0
 

@@ -3,7 +3,6 @@ package consecutiveexample;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * 같은 숫자는 싫어
