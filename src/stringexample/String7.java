@@ -1,18 +1,25 @@
 package stringexample;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
+/**
+ * 문자내마음대로 정렬하기
+ * https://programmers.co.kr/learn/courses/30/lessons/12915
+ */
 public class String7 {
     public String[] solution(String[] strings, int n) {
         String[] answer = new String[strings.length];
 
-        Set<Character> set = new TreeSet<>();
+        Comparator<Object> comparator = Comparator
+                .comparing(o -> String.valueOf(o).charAt(n))
+                .thenComparing(Object::toString);
+        Arrays.stream(strings).sorted(comparator).collect(Collectors.toList()).toArray(answer);
 
+
+        /*
+        Set<Character> set = new TreeSet<>();
         for (String string : strings) {
             set.add(string.charAt(n));
         }
@@ -23,8 +30,10 @@ public class String7 {
             List<String> collect1 = collect.stream().filter(s -> s.charAt(n) == next).sorted().collect(Collectors.toList());
             arr.addAll(collect1);
         }
+return arr.toArray(answer)  ;
+        */
 
-        return arr.toArray(answer);
+        return answer;
     }
 
     public static void main(String[] args) {
@@ -40,4 +49,5 @@ public class String7 {
         System.out.println(Arrays.toString(string7.solution(d, 1))); // [abcd, abce, cdx]
 */
     }
+
 }
