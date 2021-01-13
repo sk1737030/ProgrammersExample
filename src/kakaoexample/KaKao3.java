@@ -33,9 +33,8 @@ public class KaKao3 {
 
         while (!numberStack.isEmpty()) {
             String pop = charStack.pop();
-            String pop1 = numberStack.pop();
-            int numbers = Integer.parseInt(pop1);
-            int extracted = extracted(charStack, pop, numbers);
+            int number = Integer.parseInt(numberStack.pop());
+            int extracted = extracted(charStack, pop, number);
             sum += extracted;
             multiPleCount--;
         }
@@ -43,13 +42,13 @@ public class KaKao3 {
         return sum;
     }
 
-    private int extracted(Stack<String> s, String pop, int numbers) {
+    private int extracted(Stack<String> s, String chars, int number) {
         int multipleEvent = 1; // *
         int minusMultipleEvent = 1; // #
 
-        if (pop.equals("*")) {
+        if (chars.equals("*")) {
             if (!s.isEmpty()) {
-                pop = s.pop();
+                chars = s.pop();
             }
 
             multipleEvent = 2;
@@ -64,25 +63,25 @@ public class KaKao3 {
             multipleEvent = 2;
         }
 
-        if (pop.equals("#")) {
+        if (chars.equals("#")) {
             minusMultipleEvent = -1;
-            pop = s.pop();
+            chars = s.pop();
         }
 
-        switch (pop) {
+        switch (chars) {
             case "D":
-                numbers = ((int) Math.pow(numbers, 2)) * multipleEvent * minusMultipleEvent;
+                number = ((int) Math.pow(number, 2)) * multipleEvent * minusMultipleEvent;
                 break;
             case "T":
-                numbers = ((int) Math.pow(numbers, 3)) * multipleEvent * minusMultipleEvent;
+                number = ((int) Math.pow(number, 3)) * multipleEvent * minusMultipleEvent;
                 break;
             case "S":
-                numbers = ((int) Math.pow(numbers, 1)) * multipleEvent * minusMultipleEvent;
+                number = ((int) Math.pow(number, 1)) * multipleEvent * minusMultipleEvent;
                 break;
             default:
         }
 
-        return numbers;
+        return number;
     }
 
     public static void main(String[] args) {
