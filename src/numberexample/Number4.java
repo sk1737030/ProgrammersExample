@@ -27,6 +27,14 @@ public class Number4 {
     }
 
 
+    private void isPrime(int n) {
+        for (int i = 2; i <= n; i++) {
+            if (i % n == 0) {
+                System.out.println(i + "는 소수가 아니다.");
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Number4 number4 = new Number4();
 
