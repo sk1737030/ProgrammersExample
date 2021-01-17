@@ -10,23 +10,26 @@ import java.util.Locale;
  */
 public class String10 {
     public String solution(String s) {
+        StringBuilder answer = new StringBuilder();
+
         char[] chars = s.toCharArray();
         boolean bool = true;
-        for (int i = 0; i < chars.length; i++) {
-            if (chars[i] != ' ') {
+        for (char aChar : chars) {
+            if (aChar != ' ') {
                 if (bool) {
-                    chars[i] = Character.toUpperCase(chars[i]);
+                    answer.append(String.valueOf(aChar).toUpperCase());
                     bool = false;
                 } else {
-                    chars[i] = Character.toLowerCase(chars[i]);
+                    answer.append(String.valueOf(aChar).toLowerCase());
                     bool = true;
                 }
             } else {
                 bool = true;
+                answer.append(aChar);
             }
         }
 
-        return String.valueOf(chars);
+        return answer.toString();
     }
 
     public static void main(String[] args) {
