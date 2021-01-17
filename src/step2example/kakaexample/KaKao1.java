@@ -1,4 +1,4 @@
-package step2example.number.kakaexample;
+package step2example.kakaexample;
 
 import java.util.ArrayList;
 import java.util.List;
