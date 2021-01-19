@@ -23,7 +23,6 @@ public class Number2 {
         }
         return Integer.parseInt(String.valueOf(prevValue.remainder(BigDecimal.valueOf(1234567))));
     }
-// 1047261
 
     public int fibonacci(long n) {
         if (n <= 2)
