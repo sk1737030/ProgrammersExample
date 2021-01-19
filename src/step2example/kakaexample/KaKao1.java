@@ -3,6 +3,10 @@ package step2example.kakaexample;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Cache
+ *
+ */
 public class KaKao1 {
     public int solution(int cacheSize, String[] cities) {
         int answer = 0;
