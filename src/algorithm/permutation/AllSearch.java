@@ -10,7 +10,6 @@ public class AllSearch {
 
         boolean[] check = new boolean[relation.length];
         int[] output = new int[3];
-
         allSearch(relation, output, check, 0, relation.length);
 
         return answer;
@@ -20,7 +19,6 @@ public class AllSearch {
     private void allSearch(int[] relation, int[] output, boolean[] check, int start, int n) {
         print(output, start);
 
-
         for (int i = 0; i < n; i++) {
             if (!check[i]) {
                 check[i] = true;
@@ -28,6 +26,7 @@ public class AllSearch {
                 allSearch(relation, output, check, start + 1, n);
                 output[start] = 0;
                 check[i] = false;
+
             }
         }
     }
