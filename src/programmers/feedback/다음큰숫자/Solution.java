@@ -1,12 +1,11 @@
 package programmers.feedback.다음큰숫자;
 
 public class Solution {
-    public int solution(int n) {
+    public int solution(final int n) {
         int numberOfOne = getNumberOfOne(n);
 
         for (int i = n + 1; i <= 1000000; i++) {
-            int cnt = getNumberOfOne(i);
-            if (cnt == numberOfOne) {
+            if (getNumberOfOne(i) == numberOfOne) {
                 return i;
             }
         }
@@ -14,25 +13,17 @@ public class Solution {
         return n;
     }
 
-    public int getNumberOfOne(int n) {
-        StringBuilder sb = new StringBuilder(Integer.toBinaryString(n));
-
-        int length = sb.length();
+    public int getNumberOfOne(final int n) {
+        int binaryOfN = Integer.parseInt(Integer.toBinaryString(n));
         int cnt = 0;
-        for (int i = 0; i < length; i++) {
-            char c = sb.charAt(i);
-            if (c == '1')
+
+        while (binaryOfN > 0) {
+            if (binaryOfN % 10 == 1) {
                 cnt++;
+            }
+            binaryOfN /= 10;
         }
+
         return cnt;
-    }
-
-
-    public static void main(String[] args) {
-
-        Solution solution = new Solution();
-        System.out.println(solution.solution(15)); //23
-
-        // 1001110
     }
 }
