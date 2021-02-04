@@ -36,7 +36,7 @@ public class StackQueue3 {
         //int[] prices = {1, 2, 3, 2, 3};  //[4, 3, 1, 1, 0]
         //int[] prices = {0, 1, 2, 3, 1};  //[4, 3, 1, 1, 0]
         //int[] prices = {5, 8, 6, 2, 4, 1}; // [3, 1, 1, 2, 1, 0]
-        int[] prices = {1, 2, 3, 2, 3, 1}; // 5, 3, 1, 2, 1, 0
+        int[] prices = {1, 2, 3, 2, 3, 1}; // 5, 4, 1, 2, 1, 0
 
         System.out.println(Arrays.toString(stackQueue3.solution(prices)));
     }
