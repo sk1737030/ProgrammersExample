@@ -2,10 +2,8 @@ package programmers.step2example.kakaexample;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -27,6 +25,7 @@ public class KaKao3 {
         boolean[] visited = new boolean[columnLength];
 
         doCombination(visited, columnLength, 0);
+
         list.sort((o1, o2) -> {
             if (o1.charAt(0) == o2.charAt(0)) {
                 return Integer.compare(Integer.parseInt(o1), Integer.parseInt(o2));
