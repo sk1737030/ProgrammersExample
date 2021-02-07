@@ -16,7 +16,7 @@ public class Number4 {
                 n = n - 1;
                 na = 4;
             }
-            System.out.println(n);
+
             sb.append(na);
         }
         return sb.reverse().toString();

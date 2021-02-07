@@ -9,11 +9,13 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SolutionTest {
+
     @Test
     public void solution() {
         Solution solution = new Solution();
-        System.out.println(solution.solution("UDU")); // 7
-        //System.out.println(solution.solution("LRLRLRLRLLLLLLLLLLLRRRRRRRRRRRRRRRRRRRDDDDDDDDDDDDDDDDDDDDDDLLLLLLLLLLLLLLLLLLLLLLLRRRRRRRRRRRRRRRRRRRRRLLLLLUUUUUUUUUURRRRRLLLLLLLLLLL")); // 7
+        assertEquals(1, solution.solution("UDU"));
+        //assertEquals(4, solution.solution("ULUL"));
+        //assertEquals(7, solution.solution("LULLLLLLU"));
 
 
     }

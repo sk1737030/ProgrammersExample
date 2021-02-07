@@ -1,11 +1,12 @@
 package programmers.feedback.방문길이;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Solution {
 
-    Set<String> set = new HashSet<>();
+    Set<Path> set = new HashSet<>();
 
     private int x = 0;
     private int y = 0;
@@ -32,6 +33,7 @@ public class Solution {
             }
         }
 
+
         return answer;
     }
 
@@ -40,7 +42,7 @@ public class Solution {
             return;
         }
 
-        if (set.add(makePath(this.x, this.y, toX, toY)) && set.add(makePath(toX, toY, this.x, this.y))) {
+        if (set.add(Path.makePath(this.x, this.y, toX, toY))) {
             this.answer++;
         }
 
@@ -48,7 +50,49 @@ public class Solution {
         this.y = toY;
     }
 
-    private String makePath(int x, int y, int toX, int toY) {
-        return String.valueOf(x) + y + toX + toY;
+
+    static class Path {
+        int x;
+        int y;
+        int toX;
+        int toY;
+
+        private Path() {
+        }
+
+        private Path(int x, int y, int toX, int toY) {
+            this.x = x;
+            this.y = y;
+            this.toX = toX;
+            this.toY = toY;
+        }
+
+        public static Path makePath(int x, int y, int toX, int toY) {
+            return new Path(x, y, toX, toY);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Path path = (Path) o;
+            return (x == path.x && y == path.y && toX == path.toX && toY == path.toY)
+                    || (x == path.toX && y == path.toY && toX == path.x && toY == path.y);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(x, y, toX, toY) + Objects.hash(toX, toY, x, y);
+        }
+
+        @Override
+        public String toString() {
+            return "Path{" +
+                    "x=" + x +
+                    ", y=" + y +
+                    ", toX=" + toX +
+                    ", toY=" + toY +
+                    '}';
+        }
     }
 }
