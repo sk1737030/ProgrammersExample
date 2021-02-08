@@ -10,9 +10,9 @@ public class Combination {
 
     public static void main(String[] args) {
         Combination combination = new Combination();
-        int[] arr = {1, 2, 3};
+        int[] arr = {1, 2, 3, 4};
         int n = arr.length;
-        int r = 2;
+        int r = 3;
         int[] comArr = new int[n];
         combination.doCombination(arr, n, r, 0, 0, comArr);
     }
@@ -21,7 +21,6 @@ public class Combination {
         //System.out.println(" === > " + n + " : " + r + " : " + index + " : " + target);
         if (r == 0) {
             System.out.println(Arrays.toString(comArr));
-
         } else if (target == n) {
             return;
         } else {

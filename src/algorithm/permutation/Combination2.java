@@ -9,8 +9,7 @@ import java.util.Arrays;
 public class Combination2 {
     public void doCombination(int[] arr, int[] comArr, boolean[] bool, int n, int depth, int index) {
 
-        System.out.println("===> " + Arrays.toString(comArr) + Arrays.toString(bool) + " " + n + "  " + depth);
-
+        //    System.out.println("===> " + Arrays.toString(comArr) + Arrays.toString(bool) + " " + n + "  " + depth);
         if (depth <= n) {
             print(arr, comArr, bool);
         }
