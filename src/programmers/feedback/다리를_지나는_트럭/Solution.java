@@ -4,12 +4,12 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Solution {
-    public int solution(final int bridge_length, final int weight, final int[] truck_weights) {
-        int answer = 1;
+    private int answer = 1;
 
-        Bridge bridge = new Bridge(bridge_length, weight);
+    public int solution(final int bridge_length, final int weight, final int[] truck_weights) {
 
         int index = 0;
+        Bridge bridge = new Bridge(bridge_length, weight);
 
         while (index < truck_weights.length) {
             Truck truck = new Truck(truck_weights[index++]);
@@ -20,18 +20,24 @@ public class Solution {
                 index--;
             }
 
-            bridge.moveTrucksOnBridge();
-            bridge.removePassedTruck();
-            answer++;
+            oneSecondPassed(bridge);
         }
 
         while (bridge.hasTruckOnBridge()) {
-            bridge.moveTrucksOnBridge();
-            bridge.removePassedTruck();
-            answer++;
+            oneSecondPassed(bridge);
+
         }
 
         return answer;
+    }
+
+    private void oneSecondPassed(Bridge bridge) {
+        bridge.moveTrucksOnBridge();
+        if (bridge.hasArrivedTruck()) {
+            bridge.removePassedTruck();
+        }
+
+        answer++;
     }
 
     static class Bridge {
@@ -72,6 +78,10 @@ public class Solution {
         public boolean hasTruckOnBridge() {
             return !truckOnBridgeQueue.isEmpty();
         }
+
+        public boolean hasArrivedTruck() {
+            return truckOnBridgeQueue.stream().anyMatch(truck -> truck.getMovedLength() > bridgeLength);
+        }
     }
 
     static class Truck {
@@ -99,7 +109,6 @@ public class Solution {
                     '}';
         }
     }
-
-
 }
+
 
