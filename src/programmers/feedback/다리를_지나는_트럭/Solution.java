@@ -1,66 +1,105 @@
 package programmers.feedback.다리를_지나는_트럭;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 public class Solution {
-    List<Integer> movedTruckLengthList = new LinkedList<>();
-    Queue<Integer> truckOnBridgeQueue = new LinkedList<>();
-
     public int solution(final int bridge_length, final int weight, final int[] truck_weights) {
         int answer = 1;
-        int currentWeightOnBridge = 0;
+
+        Bridge bridge = new Bridge(bridge_length, weight);
+
         int index = 0;
 
         while (index < truck_weights.length) {
-            int truckWeight = truck_weights[index++];
-
-            if (currentWeightOnBridge + truckWeight <= weight) {
-                currentWeightOnBridge += truckWeight;
-                truckOnBridgeQueue.offer(truckWeight);
-                movedTruckLengthList.add(1);
+            Truck truck = new Truck(truck_weights[index++]);
+            if (bridge.isOverWeight(truck.weight)) {
+                truck.move();
+                bridge.moveTruckToBridge(truck);
             } else {
                 index--;
             }
 
-            moveTruck();
-            currentWeightOnBridge -= checkPassedTruckOfWeight(bridge_length);
-
+            bridge.moveTrucksOnBridge();
+            bridge.removePassedTruck();
             answer++;
         }
 
-        while (!movedTruckLengthList.isEmpty()) {
-            moveTruck();
-            currentWeightOnBridge -= checkPassedTruckOfWeight(bridge_length);
-
+        while (bridge.hasTruckOnBridge()) {
+            bridge.moveTrucksOnBridge();
+            bridge.removePassedTruck();
             answer++;
         }
 
         return answer;
     }
 
-    private int checkPassedTruckOfWeight(final int bridge_length) {
-        int passedTruckOfWeight = 0;
+    static class Bridge {
+        private int currentWeightOnBridge;
+        private final int bridgeLength;
+        private final int weight;
+        Queue<Truck> truckOnBridgeQueue = new LinkedList<>();
 
-        for (int i = 0; i < movedTruckLengthList.size(); i++) {
-            Integer truckLength = movedTruckLengthList.get(i);
-            if (truckLength <= bridge_length) {
-                break;
-            }
-
-            movedTruckLengthList.remove(i--);
-            passedTruckOfWeight += truckOnBridgeQueue.poll();
+        public Bridge(int bridge_length, int weight) {
+            this.bridgeLength = bridge_length;
+            this.weight = weight;
+            currentWeightOnBridge = 0;
         }
-        return passedTruckOfWeight;
+
+        public void removePassedTruck() {
+            truckOnBridgeQueue.removeIf(truck -> {
+                boolean arrived = truck.getMovedLength() > bridgeLength;
+                if (arrived) {
+                    currentWeightOnBridge -= truck.weight;
+                }
+                return arrived;
+            });
+        }
+
+        public boolean isOverWeight(int truckWeight) {
+            return currentWeightOnBridge + truckWeight <= weight;
+        }
+
+        public void moveTruckToBridge(Truck truck) {
+            currentWeightOnBridge += truck.weight;
+            truckOnBridgeQueue.offer(truck);
+        }
+
+        public void moveTrucksOnBridge() {
+            truckOnBridgeQueue.forEach(Truck::move);
+        }
+
+        public boolean hasTruckOnBridge() {
+            return !truckOnBridgeQueue.isEmpty();
+        }
     }
 
+    static class Truck {
+        private final int weight;
+        private int movedLength;
 
-    private void moveTruck() {
-        for (int i = 0; i < movedTruckLengthList.size(); i++) {
-            movedTruckLengthList.set(i, movedTruckLengthList.get(i) + 1);
+        public Truck(int weight) {
+            this.weight = weight;
+            this.movedLength = 0;
+        }
+
+        public void move() {
+            ++movedLength;
+        }
+
+        public int getMovedLength() {
+            return movedLength;
+        }
+
+        @Override
+        public String toString() {
+            return "Truck{" +
+                    "weight=" + weight +
+                    ", movedLength=" + movedLength +
+                    '}';
         }
     }
+
 
 }
 
