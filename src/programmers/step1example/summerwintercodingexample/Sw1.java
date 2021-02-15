@@ -47,9 +47,9 @@ public class Sw1 {
     public static void main(String[] args) {
         Sw1 sw1 = new Sw1();
 
-        String skills = "CBD";
-        String[] skill_trees = {"BACDE", "CBADF", "AECB", "BDA"};
-        //String[] skill_trees = { "CBADF"};
+        String skills = "G";
+        //String[] skill_trees = {"BACDE", "CBADF", "AECB", "BDA"};
+        String[] skill_trees = {"CBADF"};
 
         System.out.println(sw1.solution(skills, skill_trees)); // 2
     }
