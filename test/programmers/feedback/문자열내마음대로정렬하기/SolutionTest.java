@@ -18,7 +18,7 @@ class SolutionTest {
         assertArrayEquals(new String[]{"aac", "abc", "abd", "abff"}, solution.solution2(new String[]{"aac", "abd", "abc", "abff"}, 1));
         */
         //assertArrayEquals(new String[]{"abc", "abcd", "adcf", "abd"}, solution.solution(new String[]{"adcf", "abd", "abc", "abcd"}, 2));
-        assertArrayEquals(new String[]{"abc", "abcd", "adcf", "abd"}, solution.solution2(new String[]{"adcf", "abd", "abc", "abcd"}, 2));
+        assertArrayEquals(new String[]{"abc", "abcd", "adcf", "abd"}, solution.solution(new String[]{"adcf", "abd", "abc", "abcd"}, 2));
 
     }
 }
