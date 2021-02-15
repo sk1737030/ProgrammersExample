@@ -1,6 +1,6 @@
 package programmers.feedback.하샤드수;
 
-public class HarshadNumber {
+public class Solution {
     public boolean solution(int x) {
         int sum = 0;
         int temp = x;
