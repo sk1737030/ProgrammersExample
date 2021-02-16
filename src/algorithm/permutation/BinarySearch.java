@@ -1,17 +1,11 @@
 package algorithm.permutation;
 
+/**
+ * 현재의 문제
+ * 중복 데이터는 고려안함
+ */
 public class BinarySearch {
-    public static void main(String[] args) {
-        BinaryTree binaryTree = new BinaryTree();
-        binaryTree.add(30);
-        binaryTree.add(20);
-        binaryTree.add(25);
-        binaryTree.add(40);
-        binaryTree.add(10);
-        binaryTree.add(35);
-        binaryTree.allSearch();
-    }
-
+    
 
     static class Node {
         public Integer data;
