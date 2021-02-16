@@ -1,11 +1,11 @@
 package programmers.feedback.기능개발;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
-        Map<Integer, Integer> hashMap = new LinkedHashMap<>();
+        Map<Integer, Integer> hashMap = new TreeMap<>();
         int prev = -1;
 
         for (int i = 0; i < progresses.length; i++) {
