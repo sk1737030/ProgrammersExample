@@ -11,9 +11,9 @@ class SolutionTest {
     @Test
     void test() {
         Solution solution = new Solution();
-        assertEquals(8, solution.solution(2, 10, new int[]{7, 4, 5, 6}));
-        //assertEquals(101, solution.solution(100, 100, new int[]{10}));
-        //assertEquals(110, solution.solution(100, 100, new int[]{10, 10, 10, 10, 10, 10, 10, 10, 10, 10}));
+        //assertEquals(8, solution.solution(2, 10, new int[]{7, 4, 5, 6}));
+        assertEquals(101, solution.solution(100, 100, new int[]{10}));
+    //    assertEquals(110, solution.solution(100, 100, new int[]{10, 10, 10, 10, 10, 10, 10, 10, 10, 10}));
     }
 
 }

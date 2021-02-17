@@ -13,8 +13,7 @@ public class Solution {
 
         while (index < truck_weights.length) {
             Truck truck = new Truck(truck_weights[index++]);
-            if (bridge.isOverWeight(truck.weight)) {
-                truck.move();
+            if (!bridge.isOverWeight(truck.weight)) {
                 bridge.moveTruckToBridge(truck);
             } else {
                 index--;
@@ -63,10 +62,11 @@ public class Solution {
         }
 
         public boolean isOverWeight(int truckWeight) {
-            return currentWeightOnBridge + truckWeight <= weight;
+            return currentWeightOnBridge + truckWeight > weight;
         }
 
         public void moveTruckToBridge(Truck truck) {
+            truck.move();
             currentWeightOnBridge += truck.weight;
             truckOnBridgeQueue.offer(truck);
         }
