@@ -1,17 +1,10 @@
 package programmers.feedback.전화번호_목록;
 
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Deque;
-
 public class Solution {
-    public boolean solution(final String[] phoneBook) {
-        Deque<String> phoneStack = new ArrayDeque<>(Arrays.asList(phoneBook));
-
-        while (!phoneStack.isEmpty()) {
-            String pop = phoneStack.pop();
-            for (int i = phoneStack.size() - 1; i >= 0; i--) {
-                if (bothWayStartWith(phoneBook[i], pop)) {
+    public boolean solution(final String[] phone_book) {
+        for (int i = 0; i < phone_book.length; i++) {
+            for (int j = i + 1; j < phone_book.length; j++) {
+                if (isContains(phone_book[i], phone_book[j])) {
                     return false;
                 }
             }
@@ -20,8 +13,7 @@ public class Solution {
         return true;
     }
 
-
-    private boolean bothWayStartWith(final String s, final String pop) {
+    private boolean isContains(String s, String pop) {
         return s.startsWith(pop) || pop.startsWith(s);
     }
 }
