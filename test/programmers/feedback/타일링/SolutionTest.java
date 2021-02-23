@@ -8,7 +8,7 @@ class SolutionTest {
     @Test
     void 타일링() {
         Solution solution = new Solution();
-        assertEquals(5, solution.solution(45));
+        assertEquals(5, solution.solution(4));
     }
 
 }
