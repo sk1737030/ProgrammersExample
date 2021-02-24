@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SolutionTest {
     @Test
-    void 게임_맵_최단거리_테스트() {
+    void 게임_맵_최단거리() {
         Solution solution = new Solution();
         assertEquals(11, solution.solution(
                 new int[][]{
@@ -14,8 +14,13 @@ class SolutionTest {
                         {1, 0, 1, 0, 1},
                         {1, 0, 1, 1, 1},
                         {1, 1, 1, 0, 1},
-                        {0, 0, 1, 0, 1}
+                        {0, 0, 0, 0, 1}
+                }));
+        assertEquals(-1, solution.solution(
+                new int[][]{
+                        {1, 0, 1, 1, 1}
                 }));
     }
+
 
 }
