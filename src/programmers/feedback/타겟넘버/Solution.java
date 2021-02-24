@@ -20,7 +20,9 @@ public class Solution {
             }
         }
 
-        if (sum == target) total++;
+        if (sum == target) {
+            total++;
+        }
 
         for (int i = depth; i < numbers.length; i++) {
             if (!visited[i]) {
