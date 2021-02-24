@@ -8,12 +8,11 @@ public class Solution {
         arr[0] = 1;
         arr[2] = 3;
 
-        for (int i = 3; i <= n; i++) {
-            arr[i] = arr[i - 2] * 3;
+        long sum = 0;
+        for (int i = 4; i <= n; i += 2) {
+            sum += arr[i - 4] * 2;
+            arr[i] = (sum + arr[i - 2] * 3) % MOD;
 
-            for (int j = i - 4; j >= 0; j -= 2) {
-                arr[i] = (arr[i] + arr[j] * 2) % MOD;
-            }
         }
         return arr[n];
     }
