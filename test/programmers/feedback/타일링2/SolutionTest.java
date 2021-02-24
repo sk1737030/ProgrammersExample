@@ -11,6 +11,6 @@ class SolutionTest {
         assertEquals(11, solution.solution(4));
         assertEquals(41, solution.solution(6));
         assertEquals(153, solution.solution(8));
-        //assertEquals(153, solution.solution(5000));
+        assertEquals(153, solution.solution(5000));
     }
 }
