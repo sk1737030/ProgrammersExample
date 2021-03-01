@@ -4,26 +4,23 @@ import java.util.*;
 
 public class Solution {
     public int solution(int[] money) {
+        int[][] dp = new int[2][money.length];
 
-        int[] dp = new int[money.length - 1];
-        int[] dp2 = new int[money.length];
+        dp[0][0] = money[0];
+        dp[0][1] = money[0];
+        dp[0][2] = dp[0][0] + money[2];
 
-        dp[0] = money[0];
-        dp[1] = money[0];
 
-        dp2[1] = money[1];
-        dp2[2] = 0;
+        dp[1][1] = money[1];
+        dp[1][2] = money[2];
 
-        for (int i = 2; i < money.length - 1; i++) {
-            dp[i] = Math.max(money[i] + dp[i - 2], dp[i - 1]);
+        for (int i = 3; i < money.length; i++) {
+            if (i != money.length - 1)
+                dp[0][i] = Math.max(dp[0][i - 2] + money[i], dp[0][i - 3] + money[i]);
+            dp[1][i] = Math.max(dp[1][i - 2] + money[i], dp[1][i - 3] + money[i]);
         }
-        for (int i = 2; i < money.length; i++) {
-            dp2[i] = Math.max(money[i] + dp2[i - 2], dp2[i - 1]);
-        }
 
-        System.out.println(Arrays.toString(dp2));
-
-        return Math.max(dp[money.length - 2], dp2[money.length - 1]);
+        return Math.max(Arrays.stream(dp[0]).max().getAsInt(), Arrays.stream(dp[1]).max().getAsInt());
     }
 
 }
