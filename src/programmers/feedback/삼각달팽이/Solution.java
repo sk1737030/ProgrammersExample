@@ -28,7 +28,8 @@ public class Solution {
 
 
         return Arrays.stream(snailArray)
-                .flatMapToInt(ints -> Arrays.stream(ints).filter(inta -> inta > 0))
+                .flatMapToInt(Arrays::stream)
+                .filter(value1 -> value1 != 0)
                 .toArray();
     }
 
