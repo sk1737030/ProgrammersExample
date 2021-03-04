@@ -8,6 +8,7 @@ public class Solution {
             if (o1.charAt(n) < o2.charAt(n)) {
                 return -1;
             }
+
             return o1.compareTo(o2);
         }).toArray(String[]::new);
     }
