@@ -8,30 +8,65 @@ public class Solution {
 
         new_id = makeToLowerCase(new_id);
         new_id = removeBanCharList(new_id);
-        new_id = removeTrimDot(new_id);
-        new_id = checkLengthIfZeroFillA(new_id);
+        new_id = removeConsecutiveDot(new_id);
+        new_id = removeTrimDto(new_id);
         new_id = removeCharsIfOverFifteen(new_id);
-        new_id = removeTrimDot(new_id);
+        new_id = checkLengthIfZeroFillA(new_id);
         new_id = checkLengthIfUnderTwoFillLastChar(new_id);
+        new_id = removeTrimDto(new_id);
         return new_id.trim();
     }
 
-    private String checkLengthIfUnderTwoFillLastChar(String new_id) {
-        while (new_id.length() <= 2) {
-            new_id += new_id.charAt(new_id.length() - 1);
+    private String removeTrimDto(String new_id) {
+
+        char[] chars = new_id.toCharArray();
+
+        int index = 0;
+
+        while (true) {
+            if (chars[index] == '.') {
+                chars[index] = ' ';
+            }
+
+            if (chars[index] != '.' && chars[index] != ' ' || index == chars.length - 1) {
+                break;
+            }
+            index++;
         }
 
-        return new_id;
+        index = chars.length - 1;
+
+        while (true) {
+            if (chars[index] == '.') {
+                chars[index] = ' ';
+            }
+            if (chars[index] != '.' && chars[index] != ' ' || 0 == index) {
+                break;
+            }
+            index--;
+        }
+
+
+        return new String(chars);
+    }
+
+
+    private String checkLengthIfUnderTwoFillLastChar(String new_id) {
+        StringBuilder new_idBuilder = new StringBuilder(new_id);
+        while (new_idBuilder.length() <= 2) {
+            new_idBuilder.append(new_idBuilder.charAt(new_idBuilder.length() - 1));
+        }
+
+        return new_idBuilder.toString();
     }
 
     private String removeCharsIfOverFifteen(String new_id) {
         StringBuilder sb = new StringBuilder();
         for (char c : new_id.toCharArray()) {
-            if (!Character.isWhitespace(c) && sb.length() <= 15) {
+            if (!Character.isWhitespace(c) && sb.length() < 15) {
                 sb.append(c);
             }
         }
-
         return sb.toString();
     }
 
@@ -39,18 +74,12 @@ public class Solution {
         return new_id.length() == 0 ? "a" : new_id;
     }
 
-    private String removeTrimDot(String new_id) {
+    private String removeConsecutiveDot(String new_id) {
         char[] chars = new_id.toCharArray();
-        char beforeChar = '.';
-
-        // 첫 번 째 마지막 . 제거해야함
-        for (int i = 0; i < chars.length; i++) {
-
-            if (beforeChar == '.' && chars[i] == '.') {
-                chars[i] = ' ';
+        for (int i = 1; i < chars.length; i++) {
+            if (chars[i - 1] == '.' && chars[i] == '.') {
+                chars[i - 1] = ' ';
             }
-
-            beforeChar = chars[i];
         }
 
         return new String(chars);
