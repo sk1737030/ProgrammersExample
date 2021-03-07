@@ -4,28 +4,15 @@ import java.util.Locale;
 
 public class Solution {
     public String solution(String new_id) {
-        String answer = "";
         Charter charter = new Charter(new_id)
                 .makeToLowerCase()
                 .removeBanCharList()
                 .removeConsecutiveDot()
-                .removeTrimDto()
+                .removeTrimDot()
                 .removeCharsIfOverFifteen()
                 .checkLengthIfZeroFillA()
-                .checkLengthIfUnderTwoFillLastChar()
-                .removeTrimDto();
-
-        return charter.Id.trim();
-
-
-        /*new_id = makeToLowerCase(new_id);
-        new_id = removeBanCharList(new_id);
-        new_id = removeConsecutiveDot(new_id);
-        new_id = removeTrimDto(new_id);
-        new_id = removeCharsIfOverFifteen(new_id);
-        new_id = checkLengthIfZeroFillA(new_id);
-        new_id = checkLengthIfUnderTwoFillLastChar(new_id);
-        new_id = removeTrimDto(new_id);*/
+                .checkLengthIfUnderTwoFillLastChar();
+        return charter.Id;
     }
 
     static class Charter {
@@ -35,33 +22,8 @@ public class Solution {
             Id = id;
         }
 
-        public Charter removeTrimDto() {
-            char[] chars = this.Id.toCharArray();
-            int index = 0;
-            while (true) {
-                if (chars[index] == '.') {
-                    chars[index] = ' ';
-                }
-
-                if (chars[index] != '.' && chars[index] != ' ' || index == chars.length - 1) {
-                    break;
-                }
-                index++;
-            }
-
-            index = chars.length - 1;
-
-            while (true) {
-                if (chars[index] == '.') {
-                    chars[index] = ' ';
-                }
-                if (chars[index] != '.' && chars[index] != ' ' || 0 == index) {
-                    break;
-                }
-                index--;
-            }
-
-            this.Id = new String(chars);
+        public Charter removeTrimDot() {
+            this.Id = this.Id.replaceAll("^[.]|[.]$", "");
             return this;
         }
 
@@ -72,6 +34,7 @@ public class Solution {
                 new_idBuilder.append(new_idBuilder.charAt(new_idBuilder.length() - 1));
             }
             this.Id = new_idBuilder.toString();
+            this.removeTrimDot();
             return this;
         }
 
@@ -92,13 +55,7 @@ public class Solution {
         }
 
         private Charter removeConsecutiveDot() {
-            char[] chars = this.Id.toCharArray();
-            for (int i = 1; i < chars.length; i++) {
-                if (chars[i - 1] == '.' && chars[i] == '.') {
-                    chars[i - 1] = ' ';
-                }
-            }
-            this.Id = new String(chars);
+            this.Id = this.Id.replaceAll("[.]{2,}", ".");
             return this;
         }
 
@@ -111,8 +68,5 @@ public class Solution {
             this.Id = this.Id.toLowerCase(Locale.ROOT);
             return this;
         }
-
     }
-
-
 }
