@@ -4,63 +4,69 @@ import java.util.Locale;
 
 public class Solution {
     public String solution(String new_id) {
-        String answer = "";
-
-        new_id = makeToLowerCase(new_id);
-        new_id = removeBanCharList(new_id);
-        new_id = removeTrimDot(new_id);
-        new_id = checkLengthIfZeroFillA(new_id);
-        new_id = removeCharsIfOverFifteen(new_id);
-        new_id = removeTrimDot(new_id);
-        new_id = checkLengthIfUnderTwoFillLastChar(new_id);
-        return new_id.trim();
+        Charter charter = new Charter(new_id)
+                .makeToLowerCase()
+                .removeBanCharList()
+                .removeConsecutiveDot()
+                .removeTrimDot()
+                .removeCharsIfOverFifteen()
+                .checkLengthIfZeroFillA()
+                .checkLengthIfUnderTwoFillLastChar();
+        return charter.Id;
     }
 
-    private String checkLengthIfUnderTwoFillLastChar(String new_id) {
-        while (new_id.length() <= 2) {
-            new_id += new_id.charAt(new_id.length() - 1);
+    static class Charter {
+        private String Id;
+
+        public Charter(String id) {
+            Id = id;
         }
 
-        return new_id;
-    }
+        public Charter removeTrimDot() {
+            this.Id = this.Id.replaceAll("^[.]|[.]$", "");
+            return this;
+        }
 
-    private String removeCharsIfOverFifteen(String new_id) {
-        StringBuilder sb = new StringBuilder();
-        for (char c : new_id.toCharArray()) {
-            if (!Character.isWhitespace(c) && sb.length() <= 15) {
-                sb.append(c);
+
+        private Charter checkLengthIfUnderTwoFillLastChar() {
+            StringBuilder new_idBuilder = new StringBuilder(this.Id);
+            while (new_idBuilder.length() <= 2) {
+                new_idBuilder.append(new_idBuilder.charAt(new_idBuilder.length() - 1));
             }
+            this.Id = new_idBuilder.toString();
+            this.removeTrimDot();
+            return this;
         }
 
-        return sb.toString();
-    }
-
-    private String checkLengthIfZeroFillA(String new_id) {
-        return new_id.length() == 0 ? "a" : new_id;
-    }
-
-    private String removeTrimDot(String new_id) {
-        char[] chars = new_id.toCharArray();
-        char beforeChar = '.';
-
-        // 첫 번 째 마지막 . 제거해야함
-        for (int i = 0; i < chars.length; i++) {
-
-            if (beforeChar == '.' && chars[i] == '.') {
-                chars[i] = ' ';
+        private Charter removeCharsIfOverFifteen() {
+            StringBuilder sb = new StringBuilder();
+            for (char c : this.Id.toCharArray()) {
+                if (!Character.isWhitespace(c) && sb.length() < 15) {
+                    sb.append(c);
+                }
             }
-
-            beforeChar = chars[i];
+            this.Id = sb.toString();
+            return this;
         }
 
-        return new String(chars);
-    }
+        private Charter checkLengthIfZeroFillA() {
+            this.Id = this.Id.length() == 0 ? "a" : this.Id;
+            return this;
+        }
 
-    private String removeBanCharList(String new_id) {
-        return new_id.replaceAll("[^a-z0-9.\\-_]", "");
-    }
+        private Charter removeConsecutiveDot() {
+            this.Id = this.Id.replaceAll("[.]{2,}", ".");
+            return this;
+        }
 
-    private String makeToLowerCase(String new_id) {
-        return new_id.toLowerCase(Locale.ROOT);
+        private Charter removeBanCharList() {
+            this.Id = this.Id.replaceAll("[^a-z0-9.\\-_]", "");
+            return this;
+        }
+
+        private Charter makeToLowerCase() {
+            this.Id = this.Id.toLowerCase(Locale.ROOT);
+            return this;
+        }
     }
 }
