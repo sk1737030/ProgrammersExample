@@ -22,3 +22,5 @@ public class Solution {
         return triangle[0][0];
     }
 }
+
+
