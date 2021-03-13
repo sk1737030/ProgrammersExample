@@ -6,4 +6,6 @@
 3. 1단계 문제 10개 이상 풀기 (Success)
 4. 1단계 문제 20개 이상 풀기 (Success)
 5. 1단계 다풀기 (Success)
-6. 2단계 10문제 풀기
+6. 프로그래머스 2단계 10문제 풀기 (Success) 
+7. Codility 10개 풀기 (Success)
+8. codility 20개 풀기 (Success) 
