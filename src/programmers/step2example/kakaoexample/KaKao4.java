@@ -1,4 +1,4 @@
-package programmers.step2example.kakaexample;
+package programmers.step2example.kakaoexample;
 
 import java.util.ArrayList;
 import java.util.List;

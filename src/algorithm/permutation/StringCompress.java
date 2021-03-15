@@ -1,7 +1,5 @@
 package algorithm.permutation;
 
-import programmers.step2example.kakaexample.KaKao4;
-
 /**
  * 문자열 압축 기본
  * aabbcccd -> 2a2b3cd
