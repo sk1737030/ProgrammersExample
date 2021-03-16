@@ -9,7 +9,6 @@ import java.util.Set;
 /**
  * 후보키
  * https://programmers.co.kr/learn/courses/30/lessons/42890
- * 일단 보류
  */
 public class KaKao3 {
 
@@ -79,6 +78,29 @@ public class KaKao3 {
         return (int) listArrayList.stream().filter(strings -> !strings.isEmpty()).count();
     }
 
+    private void doCombination(final boolean[] visited, final int n, final int columnIndex) {
+
+        combine(n, visited);
+
+        for (int i = columnIndex; i < n; i++) {
+            if (!visited[i]) {
+                visited[i] = true;
+                doCombination(visited, n, i);
+                visited[i] = false;
+            }
+        }
+    }
+
+    private void combine(int n, boolean[] visited) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            if (visited[i])
+                sb.append(i);
+        }
+        if (sb.length() > 0)
+            list.add(sb.toString());
+    }
+
     public static void main(String[] args) {
         KaKao3 kaKao3 = new KaKao3();
         /*String[][] relation = {
@@ -116,26 +138,4 @@ public class KaKao3 {
         // System.out.println(kaKao3.solution2(arr)); //2
     }
 
-    private void doCombination(final boolean[] visited, final int n, final int columnIndex) {
-
-        combine(n, visited);
-
-        for (int i = columnIndex; i < n; i++) {
-            if (!visited[i]) {
-                visited[i] = true;
-                doCombination(visited, n, i);
-                visited[i] = false;
-            }
-        }
-    }
-
-    private void combine(int n, boolean[] visited) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < n; i++) {
-            if (visited[i])
-                sb.append(i);
-        }
-        if (sb.length() > 0)
-            list.add(sb.toString());
-    }
 }
