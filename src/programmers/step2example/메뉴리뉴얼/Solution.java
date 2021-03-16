@@ -11,11 +11,10 @@ public class Solution {
 
     public String[] solution(String[] orders, int[] course) {
         List<String> answer = new ArrayList<>();
-
         boolean[] visited = new boolean[orders.length + 10];
 
         for (String order : orders) {
-            combination(order, visited, 0);
+            combination(order, visited, 0, new HashSet<String>());
         }
 
         Map<String, Integer> menuMap = new HashMap<>();
@@ -24,11 +23,9 @@ public class Solution {
             menuMap.put(s, menuMap.getOrDefault(s, 0) + 1);
         }
 
-
-
         int[] menuCnt = new int[orders.length + 10];
 
-
+        // 각각의 reverse한 녀석들 중에 같은 녀석이 있으면 제거해야함
         // 각 조합된 메뉴 별 최대 Cnt 값을 저장
         for (final int i : course) {
             menuMap.forEach((s, cnt) -> {
@@ -39,6 +36,7 @@ public class Solution {
             });
         }
 
+
         // 메뉴를 돌면서 최대 Cnt인 녀석들을 List에 추가.
         menuMap.forEach((s, integer) -> {
             if (menuCnt[s.length()] == integer) {
@@ -46,17 +44,16 @@ public class Solution {
             }
         });
 
-        System.out.println(combList);
-        System.out.println(answer);
-
         Collections.sort(answer);
+
+
 
         return answer.toArray(new String[]{});
     }
 
-    private void combination(String order, boolean[] visited, int depth) {
+    private void combination(String order, boolean[] visited, int depth, HashSet<String> strings) {
 
-        StringBuilder comb = new StringBuilder();
+        StringBuffer comb = new StringBuffer();
 
         for (int j = 0; j < order.length(); j++) {
             if (visited[j]) {
@@ -64,13 +61,17 @@ public class Solution {
             }
         }
 
-        if (comb.length() > 1)
-            combList.add(comb.toString());
+        if (comb.length() > 1) {
+            if (strings.add(comb.toString()))
+                combList.add(String.valueOf(comb));
+            if (strings.add(String.valueOf(comb.reverse())))
+                combList.add(comb.toString());
+        }
 
         for (int i = depth; i < order.length(); i++) {
             if (!visited[i]) {
                 visited[i] = true;
-                combination(order, visited, i);
+                combination(order, visited, i, strings);
                 visited[i] = false;
             }
         }
