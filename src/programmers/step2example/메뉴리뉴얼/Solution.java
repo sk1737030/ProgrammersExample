@@ -7,14 +7,15 @@ import java.util.*;
  * https://programmers.co.kr/learn/courses/30/lessons/72411
  */
 public class Solution {
-    private static final List<String> combList = new ArrayList<>();
 
     public String[] solution(String[] orders, int[] course) {
+        final List<String> combList = new ArrayList<>();
+
         List<String> answer = new ArrayList<>();
         boolean[] visited = new boolean[orders.length + 10];
 
         for (String order : orders) {
-            combination(order, visited, 0, new HashSet<String>());
+            combination(order, visited, 0, combList);
         }
 
         Map<String, Integer> menuMap = new HashMap<>();
@@ -25,7 +26,6 @@ public class Solution {
 
         int[] menuCnt = new int[orders.length + 10];
 
-        // 각각의 reverse한 녀석들 중에 같은 녀석이 있으면 제거해야함
         // 각 조합된 메뉴 별 최대 Cnt 값을 저장
         for (final int i : course) {
             menuMap.forEach((s, cnt) -> {
@@ -36,7 +36,6 @@ public class Solution {
             });
         }
 
-
         // 메뉴를 돌면서 최대 Cnt인 녀석들을 List에 추가.
         menuMap.forEach((s, integer) -> {
             if (menuCnt[s.length()] == integer) {
@@ -46,14 +45,11 @@ public class Solution {
 
         Collections.sort(answer);
 
-
-
         return answer.toArray(new String[]{});
     }
 
-    private void combination(String order, boolean[] visited, int depth, HashSet<String> strings) {
-
-        StringBuffer comb = new StringBuffer();
+    private void combination(String order, boolean[] visited, int depth, List<String> combList) {
+        StringBuilder comb = new StringBuilder();
 
         for (int j = 0; j < order.length(); j++) {
             if (visited[j]) {
@@ -62,16 +58,15 @@ public class Solution {
         }
 
         if (comb.length() > 1) {
-            if (strings.add(comb.toString()))
-                combList.add(String.valueOf(comb));
-            if (strings.add(String.valueOf(comb.reverse())))
-                combList.add(comb.toString());
+            char[] a = comb.toString().toCharArray();
+            Arrays.sort(a);
+            combList.add(String.valueOf(a));
         }
 
         for (int i = depth; i < order.length(); i++) {
             if (!visited[i]) {
                 visited[i] = true;
-                combination(order, visited, i, strings);
+                combination(order, visited, i, combList);
                 visited[i] = false;
             }
         }
