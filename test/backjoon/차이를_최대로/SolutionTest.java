@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SolutionTest {
     @Test
     void 차이를_최대로() {
-        Solution solution = new Solution();
+        Main solution = new Main();
         assertEquals(62, solution.solution(new int[]{20, 1, 15, 8, 4, 10}));
     }
 }

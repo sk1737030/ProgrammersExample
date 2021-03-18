@@ -8,27 +8,37 @@ import java.util.Scanner;
  * https://www.acmicpc.net/problem/10819
  */
 public class Main {
-    public int solution(int[] arr) {
-        int answer = 0;
+    private static int max = 0;
 
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i - 1] > arr[i]) {
-                swap(arr, i - 1, i);
-                answer += Math.abs(arr[i - 1] - arr[i]);
-            } else {
-                swap(arr, i, i - 1);
-                answer += Math.abs(arr[i] - arr[i - 1]);
-            }
+    public int solution(int[] arr) {
+        combination(arr, arr.length, 0);
+        return max;
+    }
+
+    private void combination(int[] arr, int length, int i) {
+        int sum = 0;
+
+        for (int j = 1; j < length; j++) {
+            sum += Math.abs(arr[j - 1] - arr[j]);
         }
 
-        return answer;
+        max = Math.max(max, sum);
+
+        for (int j = 0; j < length; j++) {
+            if (i + 1 < length) {
+                swap(arr, j, i + 1);
+                combination(arr, length, i + 1);
+                swap(arr, i + 1, j);
+            }
+        }
     }
 
-    private void swap(int[] arr, int i, int i2) {
-        int temp = arr[i2];
-        arr[i2] = arr[i];
-        arr[i] = temp;
+    private void swap(int[] arr, int j, int i) {
+        int tempValue = arr[j];
+        arr[j] = arr[i];
+        arr[i] = tempValue;
     }
+
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
