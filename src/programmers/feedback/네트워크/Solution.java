@@ -76,7 +76,7 @@ public class Solution {
         public int dfs() {
             int count = 0;
 
-            // 계속 돌면서 네트워크가 한번씩은 방문했는지 호가인한다
+            // 계속 돌면서 네트워크가 한번씩은 방문했는지 확인한다.
             for (int i = 0; i < networks.length; i++) {
                 Network network = networks[i];
                 if (!network.canVisit()) {

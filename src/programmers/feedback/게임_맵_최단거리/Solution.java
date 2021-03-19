@@ -128,7 +128,6 @@ public class Solution {
                 Node poll = queue.poll();
                 Integer cnt = cntQueue.poll();
 
-
                 // 끝나는 지점이면
                 if (poll.getX() == endX && poll.getY() == endY) {
                     return cnt;
