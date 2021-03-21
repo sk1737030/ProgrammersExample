@@ -8,6 +8,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ * 연구실
+ * https://www.acmicpc.net/problem/14502
+ */
 public class Main {
     public int solution(int N, int M, int[][] virusMap) {
         buildWall(virusMap, N, M, 0, 0, 0);
@@ -22,7 +26,7 @@ public class Main {
             int[][] spreadVirusMap = spreadVirus(virusMap, n, m);
             //printed(spreadVirusMap);
             
-            // TODO:: Graph 생성 간선연결하고 dfs 돌리고 count 가져오기 
+            // TODO:: Graph 생성 간선연결하고 dfs 돌리고 count 가져오기
             return;
         }
 
