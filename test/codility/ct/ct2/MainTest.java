@@ -1,4 +1,4 @@
-package codility.ct2;
+package codility.ct.ct2;
 
 import org.junit.jupiter.api.Test;
 
