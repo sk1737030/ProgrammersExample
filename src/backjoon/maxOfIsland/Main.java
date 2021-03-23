@@ -59,7 +59,6 @@ public class Main {
             sumQueue.offer(poll);
         }
 
-
         return sumQueue.poll();
     }
 
