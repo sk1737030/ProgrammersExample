@@ -1,10 +1,7 @@
 package backjoon.단지번호;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Scanner;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * 단지번호
@@ -38,7 +35,7 @@ public class Main {
         }
 
         graph.dfs();
-        return graph.answer.stream().mapToInt(Integer::intValue).toArray();
+        return graph.answer.stream().mapToInt(value -> value).toArray();
     }
 
     private Graph.Node makeNodeIfNull(Graph graph, Graph.Node adjacentNode, int i, int j) {
@@ -97,15 +94,15 @@ public class Main {
         }
 
         public void dfs() {
-            answer.add(0);
             for (Node[] value : nodes) {
                 for (Node node : value) {
                     if (node != null && !node.isVisited()) {
-                        answer.set(0, answer.get(0) + 1);
                         answer.add(dfs(node));
                     }
                 }
             }
+
+            Collections.sort(answer);
         }
 
         private int dfs(Node node) {
@@ -128,29 +125,25 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[][] arr = new int[n][n];
 
-        //전체 사각형 입력 받기
+        int n = sc.nextInt();
+
+        int[][] arr = new int[n][n];
         for (int i = 0; i < n; i++) {
             String input = sc.next();
             for (int j = 0; j < n; j++) {
-                arr[i][j] = input.charAt(j);
-            }
-        }
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                arr[i][j] = sc.nextInt();
+                arr[i][j] = input.charAt(j) - '0';
             }
         }
 
         Main solution = new Main();
-        for (int i : solution.solution(arr)) {
+
+        int[] solution1 = solution.solution(arr);
+        System.out.println(solution1.length);
+        for (int i : solution1) {
             System.out.println(i);
         }
-
     }
 }
