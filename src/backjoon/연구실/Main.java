@@ -10,22 +10,21 @@ import java.util.*;
  * https://www.acmicpc.net/problem/14502
  */
 public class Main {
+
+    int[][] dirs = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+    int maxCnt = 0;
+
     public int solution(int N, int M, int[][] virusMap) {
         buildWall(virusMap, N, M, 0, 0, 0);
-
-        return -1;
+        return maxCnt;
     }
 
-
     private void buildWall(int[][] virusMap, int n, int m, int iIndex, int jIndex, int cnt) {
-
         if (cnt == 3) {
             int[][] cloneMap = Arrays.stream(virusMap).map(int[]::clone).toArray(int[][]::new);
-            int[][] spreadVirusMap = spreadVirus(virusMap, cloneMap, n, m);
-            printed(spreadVirusMap);
-            // TODO:: Graph 생성 간선연결하고 dfs 돌리고 count 가져오기
-            //Graph graph = makeGraphAndLines(spreadVirusMap, n, m);
-            //System.out.println(graph.dfs());
+            spreadVirus(cloneMap, n, m);
+            //printed(cloneMap);
+            maxCnt = Math.max(maxCnt, bfs(cloneMap));
             return;
         }
 
@@ -42,77 +41,70 @@ public class Main {
         }
     }
 
-    // 간선 연결
-    private Graph makeGraphAndLines(int[][] spreadVirusMap, int n, int m) {
-        Graph graph = new Graph(n, m);
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
+    private int bfs(int[][] spreadVirusMap) {
+        int maxmaxcnt = 0;
+        for (int i = 0; i < spreadVirusMap.length; i++) {
+            for (int j = 0; j < spreadVirusMap[i].length; j++) {
                 if (spreadVirusMap[i][j] == 0) {
-                    Graph.Node node = makeAdjacentNode(i, j, graph.nodes);
+                    maxmaxcnt += bfs(spreadVirusMap, i, j);
+                }
+            }
+        }
+        //System.out.println(maxmaxcnt);
+        return maxmaxcnt;
+    }
 
-                    // 4방향 간선 연결
-                    if (j + 1 < m && spreadVirusMap[i][j + 1] == 0) {
-                        Graph.Node adjacentNode = makeAdjacentNode(i, j + 1, graph.nodes);
-                        graph.addEdge(node, adjacentNode);
-                    }
+    private int bfs(int[][] spreadVirusMap, int i, int j) {
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{i, j});
+        int cnt = 1;
+        spreadVirusMap[i][j] = -1;
+        while (!queue.isEmpty()) {
+            int[] poll = queue.poll();
+            for (int[] dir : dirs) {
+                int dx = poll[0] + dir[0];
+                int dy = poll[1] + dir[1];
 
-                    if (j - 1 >= 0 && spreadVirusMap[i][j - 1] == 0) {
-                        Graph.Node adjacentNode = makeAdjacentNode(i, j - 1, graph.nodes);
-                        graph.addEdge(node, adjacentNode);
-                    }
-
-                    if (i + 1 < n && spreadVirusMap[i + 1][j] == 0) {
-                        Graph.Node adjacentNode = makeAdjacentNode(i + 1, j, graph.nodes);
-                        graph.addEdge(node, adjacentNode);
-                    }
-
-                    if (i - 1 >= 0 && spreadVirusMap[i - 1][j] == 0) {
-                        Graph.Node adjacentNode = makeAdjacentNode(i - 1, j, graph.nodes);
-                        graph.addEdge(node, adjacentNode);
-                    }
+                if (dx < spreadVirusMap.length && dy < spreadVirusMap[j].length && dx >= 0 && dy >= 0 && spreadVirusMap[dx][dy] == 0) {
+                    queue.offer(new int[]{dx, dy});
+                    spreadVirusMap[dx][dy] = -1;
+                    cnt++;
                 }
             }
         }
 
-        return graph;
-    }
-
-    // 인근 노드 가져오며서 null 이면 새로만들기
-    private Graph.Node makeAdjacentNode(int i, int j, Graph.Node[][] node1) {
-        Graph.Node adjacentNode = node1[i][j];
-        if (adjacentNode == null) {
-            adjacentNode = new Graph.Node(i, j, 0);
-            node1[i][j] = adjacentNode;
-        }
-        return adjacentNode;
+        return cnt;
     }
 
     // 바이러스 퍼트리기
-    private int[][] spreadVirus(int[][] virusMap, int[][] spreadedMap, int n, int m) {
-        // TODO:: 안에 4방향 퍼트리는 부분을 줄여보기 재귀로 줄여볼수있을 듯?
-        // TODO:: 퍼뜨린 방향으로 계속 나아가기
+    private void spreadVirus(int[][] spreadedMap, int n, int m) {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (spreadedMap[i][j] == 2) {
-                    spreadedMap[i][j] = 2;
-                    // 4 방향으로 퍼트리기
-                    if (j + 1 < m && virusMap[i][j + 1] != 1) {
-                        spreadedMap[i][j + 1] = 2;
-                    }
-                    if (j - 1 >= 0 && virusMap[i][j - 1] != 1) {
-                        spreadedMap[i][j - 1] = 2;
-                    }
-                    if (i + 1 < n && virusMap[i + 1][j] != 1) {
-                        spreadedMap[i + 1][j] = 2;
-                    }
-                    if (i - 1 >= 0 && virusMap[i - 1][j] != 1) {
-                        spreadedMap[i - 1][j] = 2;
-                    }
+                    spreadVirusDFS(spreadedMap, i, j);
                 }
             }
         }
+        //  return spreadedMap;
+    }
 
-        return spreadedMap;
+    private void spreadVirusDFS(int[][] spreadedMap, int i, int j) {
+        Stack<int[]> stack = new Stack<>();
+        stack.push(new int[]{i, j});
+        while (!stack.isEmpty()) {
+            int[] pop = stack.pop();
+            for (int[] dir : dirs) {
+                int dx = dir[0] + pop[0];
+                int dy = dir[1] + pop[1];
+
+                if (dx >= spreadedMap.length || dy >= spreadedMap[i].length || dx < 0 || dy < 0 || spreadedMap[dx][dy] == 1 || spreadedMap[dx][dy] == 2)
+                    continue;
+                stack.push(new int[]{dx, dy});
+                spreadedMap[dx][dy] = 2;
+            }
+        }
+
+
     }
 
     private void printed(int[][] arr) {
@@ -123,71 +115,6 @@ public class Main {
             System.out.println();
         }
         System.out.println();
-    }
-
-    static class Graph {
-        Node[][] nodes;
-
-        static class Node {
-            int i;
-            int j;
-            int data;
-            boolean visited;
-            List<Node> adjacent = new LinkedList<>();
-
-            public Node(int i, int j, int data) {
-                this.i = i;
-                this.j = j;
-                this.data = data;
-                this.visited = false;
-            }
-        }
-
-        public Graph(int n, int m) {
-            this.nodes = new Node[n][m];
-        }
-
-        public void addEdge(Node node, Node node2) {
-            if (!node.adjacent.contains(node2)) {
-                node.adjacent.add(node2);
-            }
-            if (!node2.adjacent.contains(node)) {
-                node2.adjacent.add(node);
-            }
-        }
-
-        public int dfs() {
-            int max = 0;
-            for (Node[] nodes : nodes) {
-                for (Node value : nodes) {
-                    if (value != null && !value.visited) {
-                        max = Math.max(max, dfs(value));
-                    }
-                }
-            }
-            return max;
-        }
-
-        private int dfs(Node node) {
-            Queue<Node> nodeQueue = new LinkedList<>();
-            nodeQueue.offer(node);
-            node.visited = true;
-
-            int cnt = 1;
-
-            while (!nodeQueue.isEmpty()) {
-                Node poll = nodeQueue.poll();
-
-                for (Node node1 : poll.adjacent) {
-                    if (!node1.visited) {
-                        nodeQueue.offer(node1);
-                        node1.visited = true;
-                        cnt++;
-                    }
-                }
-            }
-            return cnt;
-        }
     }
 
     public static void main(String[] args) throws IOException {
