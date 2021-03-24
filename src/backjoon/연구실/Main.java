@@ -46,7 +46,7 @@ public class Main {
         for (int i = 0; i < spreadVirusMap.length; i++) {
             for (int j = 0; j < spreadVirusMap[i].length; j++) {
                 if (spreadVirusMap[i][j] == 0) {
-                    maxmaxcnt += bfs(spreadVirusMap, i, j);
+                    maxmaxcnt += bfs(spreadVirusMap, i, j, spreadVirusMap.length, spreadVirusMap[i].length);
                 }
             }
         }
@@ -54,7 +54,7 @@ public class Main {
         return maxmaxcnt;
     }
 
-    private int bfs(int[][] spreadVirusMap, int i, int j) {
+    private int bfs(int[][] spreadVirusMap, int i, int j, int n, int m) {
         Queue<int[]> queue = new LinkedList<>();
         queue.offer(new int[]{i, j});
         int cnt = 1;
@@ -65,7 +65,7 @@ public class Main {
                 int dx = poll[0] + dir[0];
                 int dy = poll[1] + dir[1];
 
-                if (dx < spreadVirusMap.length && dy < spreadVirusMap[j].length && dx >= 0 && dy >= 0 && spreadVirusMap[dx][dy] == 0) {
+                if (dx < n && dy < m && dx >= 0 && dy >= 0 && spreadVirusMap[dx][dy] == 0) {
                     queue.offer(new int[]{dx, dy});
                     spreadVirusMap[dx][dy] = -1;
                     cnt++;

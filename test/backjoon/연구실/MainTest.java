@@ -22,5 +22,10 @@ class MainTest {
                 {1, 1, 0},
                 {0, 0, 0}
         }));
+        assertEquals(27, main.solution(3, 4, new int[][]{
+                {2, 1, 0, 0},
+                {1, 1, 0, 0},
+                {0, 0, 0, 0}
+        }));
     }
 }
