@@ -19,15 +19,20 @@ public class Main {
         return maxCnt;
     }
 
+    // 벽면을세운다
     private void buildWall(int[][] virusMap, int n, int m, int iIndex, int jIndex, int cnt) {
         if (cnt == 3) {
+            // clone
             int[][] cloneMap = Arrays.stream(virusMap).map(int[]::clone).toArray(int[][]::new);
+            // 바이러스 퍼트리기
             spreadVirus(cloneMap, n, m);
             //printed(cloneMap);
-            maxCnt = Math.max(maxCnt, bfs(cloneMap));
+            // 안전 개수 구역찾기
+            maxCnt = Math.max(maxCnt, findSafeAreaCntByBfs(cloneMap));
             return;
         }
 
+        // 벽세우기
         for (int i = iIndex; i < n * m; i++) {
             int x = i / m;
             int y = i % m;
@@ -41,20 +46,19 @@ public class Main {
         }
     }
 
-    private int bfs(int[][] spreadVirusMap) {
-        int maxmaxcnt = 0;
+    private int findSafeAreaCntByBfs(int[][] spreadVirusMap) {
+        int cnt = 0;
         for (int i = 0; i < spreadVirusMap.length; i++) {
             for (int j = 0; j < spreadVirusMap[i].length; j++) {
                 if (spreadVirusMap[i][j] == 0) {
-                    maxmaxcnt += bfs(spreadVirusMap, i, j, spreadVirusMap.length, spreadVirusMap[i].length);
+                    cnt += findSafeAreaCntByBfs(spreadVirusMap, i, j, spreadVirusMap.length, spreadVirusMap[i].length);
                 }
             }
         }
-        //System.out.println(maxmaxcnt);
-        return maxmaxcnt;
+        return cnt;
     }
 
-    private int bfs(int[][] spreadVirusMap, int i, int j, int n, int m) {
+    private int findSafeAreaCntByBfs(int[][] spreadVirusMap, int i, int j, int n, int m) {
         Queue<int[]> queue = new LinkedList<>();
         queue.offer(new int[]{i, j});
         int cnt = 1;
@@ -85,7 +89,6 @@ public class Main {
                 }
             }
         }
-        //  return spreadedMap;
     }
 
     private void spreadVirusDFS(int[][] spreadedMap, int i, int j) {
@@ -103,8 +106,6 @@ public class Main {
                 spreadedMap[dx][dy] = 2;
             }
         }
-
-
     }
 
     private void printed(int[][] arr) {
