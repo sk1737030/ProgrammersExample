@@ -1,5 +1,3 @@
-package codility.pqr;
-
 import java.util.Arrays;
 
 public class Solution {
@@ -8,13 +6,9 @@ public class Solution {
 
         Arrays.sort(A);
 
-        for (int i = 0; i < A.length; i++) {
-            for (int j = i + 1; j < A.length; j++) {
-                for (int k = j + 1; k < A.length; k++) {
-                    if ((long) A[i] + A[j] > A[k] && (long) A[j] + A[k] > A[i] && (long) A[k] + A[i] > A[j]) {
-                        return 1;
-                    }
-                }
+        for (int i = 0; i < A.length - 2; i++) {
+            if ((long) A[i] + A[i + 1] > A[i + 2] && (long) A[i + 1] + A[i + 2] > A[i] && (long) A[i + 2] + A[i] > A[i + 1]) {
+                return 1;
             }
         }
 
