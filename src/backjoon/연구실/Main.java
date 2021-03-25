@@ -15,12 +15,12 @@ public class Main {
     int maxCnt = 0;
 
     public int solution(int N, int M, int[][] virusMap) {
-        buildWall(virusMap, N, M, 0, 0, 0);
+        buildWall(virusMap, N, M, 0, 0);
         return maxCnt;
     }
 
     // 벽면을세운다
-    private void buildWall(int[][] virusMap, int n, int m, int iIndex, int jIndex, int cnt) {
+    private void buildWall(int[][] virusMap, int n, int m, int iIndex, int cnt) {
         if (cnt == 3) {
             // clone
             int[][] cloneMap = Arrays.stream(virusMap).map(int[]::clone).toArray(int[][]::new);
@@ -40,7 +40,7 @@ public class Main {
             // 벽을 세움
             if (virusMap[x][y] == 0) {
                 virusMap[x][y] = 1;
-                buildWall(virusMap, n, m, i + 1, jIndex + 1, cnt + 1);
+                buildWall(virusMap, n, m, i + 1, cnt + 1);
                 virusMap[x][y] = 0;
             }
         }
