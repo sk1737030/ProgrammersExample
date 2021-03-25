@@ -1,3 +1,5 @@
+package codility.pqr;
+
 import java.util.Arrays;
 
 public class Solution {
