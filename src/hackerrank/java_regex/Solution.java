@@ -1,8 +1,6 @@
 package hackerrank.java_regex;
 
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 class Solution {
     public void solution(String IP) {
@@ -23,7 +21,7 @@ class Solution {
 
 //Write your code here
 class MyRegex {
-    public String pattern = "^([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5]{1,3})\\.{1,1}([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5]{1,3})\\.{1,1}([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5]{1,3})\\.{1,1}([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5]{1,3})$";
+    public String pattern = "^([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\\.{1,1}([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\\.{1,1}([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])\\.{1,1}([01]?[0-9][0-9]?|2[0-4][0-9]|25[0-5])$";
 }
 
 
