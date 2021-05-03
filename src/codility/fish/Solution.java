@@ -25,6 +25,7 @@ public class Solution {
                 }
             }
         }
+
         return answer + downFish.size();
     }
 }
