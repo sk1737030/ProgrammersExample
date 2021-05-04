@@ -19,8 +19,18 @@ public class Solution {
         Stack<Character> stack = new Stack<>();
         char[] chars = str.toCharArray();
 
-        for (int i = 0; i < chars.length; i++) {
-
+        for (char aChar : chars) {
+            if (aChar == '{' || aChar == '(' || aChar == '[') {
+                stack.push(aChar);
+            } else {
+                if (stack.isEmpty()) {
+                    System.out.println(false);
+                    return;
+                }
+                stack.pop();
+            }
         }
+
+        System.out.println(!stack.isEmpty());
     }
 }
