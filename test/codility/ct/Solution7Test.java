@@ -1,3 +1,4 @@
+/*
 package codility.ct;
 
 import codility.fish.Solution;
@@ -22,4 +23,4 @@ class Solution7Test {
         //assertEquals(2, solution.solution("H----H"));
     }
 
-}
+}*/

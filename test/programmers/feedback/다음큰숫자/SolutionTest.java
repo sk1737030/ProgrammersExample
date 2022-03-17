@@ -1,6 +1,6 @@
 package programmers.feedback.다음큰숫자;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

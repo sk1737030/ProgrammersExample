@@ -1,6 +1,6 @@
 package programmers.feedback.소수만들기;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class Solution2Test {
     @Test

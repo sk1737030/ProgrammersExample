@@ -1,7 +1,7 @@
 package programmers.feedback.수포자;
 
-import org.junit.Test;
 
+import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 public class SolutionTest {

@@ -1,6 +1,6 @@
 package programmers.feedback.방문길이;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;

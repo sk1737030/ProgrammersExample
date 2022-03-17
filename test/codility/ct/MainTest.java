@@ -1,3 +1,4 @@
+/*
 package codility.ct;
 
 import org.junit.jupiter.api.Test;
@@ -23,4 +24,4 @@ class MainTest {
         //assertEquals("-1", main.solution(arr2));
     }
 
-}
+}*/
