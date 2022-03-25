@@ -20,6 +20,12 @@ class SolutionTest {
         assertEquals(1, result4);
         int result5 = solution.lengthOfLongestSubstring("au");
         assertEquals(2, result5);
+        int result6 = solution.lengthOfLongestSubstring("dvdf");
+        assertEquals(3, result6);
+        int result7 = solution.lengthOfLongestSubstring("qrsvbspk");
+        assertEquals(5, result7);
+        int result8 = solution.lengthOfLongestSubstring("bibxia");
+        assertEquals(4, result8);
 
 
     }
