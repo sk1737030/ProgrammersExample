@@ -1,12 +1,35 @@
 package codility.min_avg_two_slice;
 
+import java.util.Arrays;
+
 class Solution {
 
     public int solution(int[] A) {
-        // write your code in Java SE 8
 
+        int answer = 0;
 
+        double[] average = new double[A.length];
+        Arrays.fill(average, Integer.MAX_VALUE);
 
-        return 0;
+        for (int i = 0; i < A.length; i++) {
+            double tempResult = A[i];
+
+            for (int j = i + 1; j < A.length; j++) {
+                tempResult += A[j];
+                double j1 = tempResult / (j - i + 1);
+                average[i] = Math.min(average[i], j1);
+            }
+        }
+
+        double temp = average[0];
+
+        for (int i = 1; i < A.length - 1; i++) {
+            if (temp > average[i]) {
+                temp = average[i];
+                answer = i;
+            }
+        }
+
+        return answer;
     }
 }
