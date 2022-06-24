@@ -19,16 +19,20 @@ public class Solution {
 
             int min = 4;
 
+            char[] chars = S.substring(p, q + 1).toCharArray();
 
-            for (int j = p; j <= q; j++) {
-                char s = S.charAt(j);
-                min = Math.min(min, map.get(s));
-                if (min == 1) {
-                    break;
-                }
-            }
+            Arrays.sort(chars);
+            result[i] = map.get(chars[0]);
 
-             result[i] = min;
+//            for (int j = p; j <= q; j++) {
+//                char s = S.charAt(j);
+//                min = Math.min(min, map.get(s));
+//                if (min == 1) {
+//                    break;
+//                }
+//            }
+
+            // result[i] = min;
         }
 
         return result;
