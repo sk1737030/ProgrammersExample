@@ -6,26 +6,16 @@ import java.util.Scanner;
 
 public class Main {
 
-
-    public int solution(int[][] arr) {
-        int answer = arr.length;
-
-        List<Person> people = new ArrayList<>();
-
-        for (int[] ints : arr) {
-            people.add(new Person(ints[0], ints[1]));
-        }
+    public int solution(List<Person> people) {
+        int answer = 0;
 
         people.sort((o1, o2) -> Integer.compare(o2.height, o1.height));
 
-        int maxWeight = people.get(0).weight;
+        int maxWeight = 0;
 
-        for (int i = 1; i < people.size(); i++) {
-            Person person = people.get(i);
-
-            if (maxWeight > person.weight) {
-                answer--;
-            } else {
+        for (Person person : people) {
+            if (maxWeight < person.weight) {
+                answer++;
                 maxWeight = person.getWeight();
             }
         }
@@ -46,10 +36,6 @@ public class Main {
                 '}';
         }
 
-        public int getHeight() {
-            return height;
-        }
-
         public int getWeight() {
             return weight;
         }
@@ -62,19 +48,17 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int input = Integer.parseInt(in.nextLine());
+        Main T = new Main();
+        Scanner kb = new Scanner(System.in);
+        int i = kb.nextInt();
+        ArrayList<Person> arr = new ArrayList<>();
 
-        int[][] arr = new int[input][2];
-
-        for (int i = 0; i < input; i++) {
-            String next = in.nextLine();
-            String[] s = next.split(" ");
-            arr[i][0] = Integer.parseInt(s[0]);
-            arr[i][1] = Integer.parseInt(s[1]);
+        for (int j = 0; j < i; j++) {
+            int i1 = kb.nextInt();
+            int i2 = kb.nextInt();
+            arr.add(new Person(i1, i2));
         }
 
-        Main main = new Main();
-        System.out.println(main.solution(arr));
+        System.out.println(T.solution(arr));
     }
 }
