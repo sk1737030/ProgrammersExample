@@ -45,9 +45,6 @@ n
 >test/programmers/feedback/영어끝말잇기/SolutionTest.java,0/7/070cd8bcb877d31fa74612548afbc4c69475bbf7
 X
 (src/leetcode/addtwonumbers/Solution.java,2/6/26fe90b1c6e88aff884fbcb0fa7993e09db2aa53
-:
-
-.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 ]
 -test/leetcode/addtwonumbers/SolutionTest.java,a/4/a48bde04b54fae88652c2a41df497f3b2bbd791c
 Y
@@ -72,8 +69,6 @@ w
 G.idea/sonarlint/issuestore/1/4/14594e10e6b8cdc8210eab219f71a165de12e8e8,c/f/cf6a4d487b961bba17eaad540311c151bdc01bbc
 w
 G.idea/sonarlint/issuestore/1/d/1ddcf84c8864055e9dd52b79fd7dc3ad982edec6,f/0/f0976fb462b31a0055dab5b219be3d099aa89699
-w
-G.idea/sonarlint/issuestore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302,e/d/ed67eb178d523a4b3f117dcbe0eda5196367ceec
 w
 G.idea/sonarlint/issuestore/8/e/8e736caba6cd7e0d2920c7f271f4ffcf0b3e47ab,8/d/8d90a63a9097f837aac1e281ef3c988b5f8b3524
 w
@@ -126,5 +121,3 @@ h
 8test/inflearn/stack_queue/올바른_괄호/MainTest.java,6/c/6c642126b0a84e4b6f95aa6fb6072c5948305250
 `
 0test/inflearn/dfs_bfs/미로찾기/MainTest.java,3/4/34acdf22783e9370f3bc66edc4a2832730ea5bbc
-[
-+src/inflearn/greedy/씨름_선수/Main.java,1/a/1a9011c2bac18a70aab9d9e4c212cc658f57acf6
