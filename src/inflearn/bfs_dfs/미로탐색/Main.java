@@ -1,4 +1,4 @@
-package inflearn.dfs_bfs.미로찾기;
+package inflearn.bfs_dfs.미로탐색;
 
 import java.util.Scanner;
 
