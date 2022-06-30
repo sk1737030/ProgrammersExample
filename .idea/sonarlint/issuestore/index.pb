@@ -146,8 +146,6 @@ k
 ;test/inflearn/strings/특정_문자_뒤집기/MainTest.java,0/2/02666a1f0deb9174698a46e7c822b59a9b36e752
 f
 6src/inflearn/strings/특정_문자_뒤집기/Main.java,c/4/c4b6da360f10406a7abb3ffdab254bcd23ba525a
-S
-#test/inflearn/strings/MainTest.java,4/b/4bb97f785ee0aead4d4696ecc38375302ced98fb
 a
 1src/inflearn/strings/중복문자제거/Main.java,f/9/f96bfed87a7b15f55b59be61562e0b13c0aa1254
 f
@@ -156,5 +154,3 @@ f
 6test/inflearn/array/큰_수_출력하기/MainTest.java,5/f/5ff95c52f2f1cdfa7e35e604550587f86bf697b7
 q
 Atest/inflearn/bfs_dfs/미로의_최단거리_통로/MainTest.java,d/3/d313684ed146ed45d6406b5f4a96b728f316b288
-a
-1src/inflearn/array/큰_수_출력하기/Main.java,0/f/0fd425c2b180c5f0ae05725f16f504d9fd38854c
