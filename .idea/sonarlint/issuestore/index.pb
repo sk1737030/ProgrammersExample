@@ -111,8 +111,6 @@ k
 ;test/leetcode/longestpalindromicsubstring/SolutionTest.java,e/e/ee1e7dc822a40cc81bf31680a64bdf06768aa3f1
 S
 #src/backjoon/미로탐색/Main.java,6/a/6a8d3ff0764994cd4f202997502e5da6b46f9eea
-c
-3src/inflearn/stack_queue/올바른_괄호/Main.java,c/f/cf0a5fd5ba7f79f693a33e4edf53e84da475f8be
 h
 8test/inflearn/stack_queue/올바른_괄호/MainTest.java,6/c/6c642126b0a84e4b6f95aa6fb6072c5948305250
 `

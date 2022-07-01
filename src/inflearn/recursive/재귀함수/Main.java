@@ -1,4 +1,4 @@
-package inflearn.recursive.재 귀함수;
+package inflearn.recursive.재귀함수;
 
 import java.util.Scanner;
 
