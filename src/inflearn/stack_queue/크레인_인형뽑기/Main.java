@@ -12,23 +12,13 @@ public class Main {
         for (int move : moves) {
             int doll = getDoll(move, board);
             if (doll != 0) {
-                stack.push(doll);
+                if (!stack.isEmpty() && stack.peek() == doll) {
+                    answer += 2;
+                    stack.pop();
+                } else {
+                    stack.push(doll);
+                }
             }
-        }
-
-        int beforeDoll = 0;
-
-        for (int i = 0; i < stack.size(); i++) {
-            Integer doll = stack.get(i);
-
-            if (doll == beforeDoll) {
-                stack.remove(i);
-                stack.remove(i - 1);
-                i -= 3;
-                answer += 2;
-            }
-            beforeDoll = doll;
-
         }
 
         return answer;
