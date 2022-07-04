@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public String solution(String str) {
+    public int solution(String str) {
 
         char[] chars = str.toCharArray();
         String answer = "";
@@ -18,7 +18,7 @@ public class Main {
             }
         }
 
-        return answer;
+        return Integer.parseInt(answer);
     }
 
 
