@@ -10,25 +10,18 @@ public class Main {
 
     public int solution(int[] arr, int m) {
         int answer = 0;
-        int j = arr.length - 1;
-        int j1 = 0;
-        int i1 = 0;
+        int sum = 0;
 
         for (int k = 0; k < m; k++) {
-            i1 += arr[k];
-            j1 += arr[j - k];
+            sum += arr[k];
         }
 
-        answer = Math.max(j1, i1);
-        j -= m;
+        answer = sum;
 
-        for (int i = m; i < (arr.length) / 2; i++) {
+        for (int i = m; i < arr.length; i++) {
+            sum += arr[i] - arr[i - m];
 
-            i1 += arr[i] - arr[i - m];
-            j1 += arr[j] - arr[j + m];
-
-            answer = Math.max(answer, Math.max(i1, j1));
-            j--;
+            answer = Math.max(answer, sum);
         }
 
         return answer;
