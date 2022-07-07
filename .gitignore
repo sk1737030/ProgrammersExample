@@ -64,6 +64,11 @@ hs_err_pid*
 # *.iml
 # *.ipr
 
+.build/**
+.out/**
+.gradle/**
+
+
 # CMake
 cmake-build-*/
 
