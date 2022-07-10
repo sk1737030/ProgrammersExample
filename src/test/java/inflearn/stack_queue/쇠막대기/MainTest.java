@@ -10,6 +10,7 @@ class MainTest {
     void test() {
         Main t = new Main();
         assertEquals(17, t.solution("()(((()())(())()))(())"));
+        assertEquals(24, t.solution("(((()(()()))(())()))(()())"));
     }
 
 }
