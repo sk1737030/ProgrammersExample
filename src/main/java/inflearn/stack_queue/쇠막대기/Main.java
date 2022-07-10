@@ -24,7 +24,7 @@ public class Main {
             } else {
                 stack.pop();
 
-                if (aChar == ')' && before == ')') {
+                if (before == ')') {
                     answer++;
                 } else {
                     answer += stack.size();
