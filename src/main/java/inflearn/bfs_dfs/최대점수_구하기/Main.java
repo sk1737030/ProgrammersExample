@@ -12,9 +12,7 @@ public class Main {
 
     public int solution(int n, int m, int[][] arr) {
         answer = 0;
-        for (int i = 0; i < n; i++) {
-            DFS(m, arr, i, 0, 0);
-        }
+        DFS(m, arr, 0, 0, 0);
 
         return answer;
     }
