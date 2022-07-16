@@ -1,4 +1,4 @@
-package inflearn.hashmap_treeset;
+package inflearn.hashmap_treeset.학급회장;
 
 import java.util.HashMap;
 import java.util.Map;
