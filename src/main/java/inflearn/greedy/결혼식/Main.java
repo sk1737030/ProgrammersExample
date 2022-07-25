@@ -6,66 +6,47 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * 시간 초과
- * limit
+ * 시간 초과 limit
  * 다시 풀기
  */
 public class Main {
 
     public static class Friend implements Comparable<Friend> {
 
-        int startTime;
-        int endTime;
+        int time;
+        Character state;
 
-        public Friend(int startTime, int endTime) {
-            this.startTime = startTime;
-            this.endTime = endTime;
+        public Friend(int time, Character state) {
+            this.time = time;
+            this.state = state;
         }
 
         @Override
         public int compareTo(Friend o) {
-            int compare = Integer.compare(endTime, o.endTime);
+            int compare = Integer.compare(this.time, o.time);
 
             if (compare == 0) {
-                return Integer.compare(startTime, o.startTime);
+                return Character.compare(this.state, o.state);
             }
 
             return compare;
         }
     }
 
-//    public int solution(int n, int[][] arr) {
-//        List<Friend> friends = new ArrayList<>();
-//
-//        for (int[] ints : arr) {
-//            friends.add(new Friend(ints[0], ints[1]));
-//        }
-        public int solution(int n, List<Friend> friends) {
+    public int solution(int n, List<Friend> friends) {
         Collections.sort(friends);
 
-        int answer = Integer.MIN_VALUE;
+        int answer = 0;
+        int cnt = 0;
 
-        for (int i = 0; i < friends.size(); i++) {
-            Friend friend = friends.get(i);
-
-            int index = i + 1;
-            int cnt = 1;
-
-            while (index < friends.size()) {
-                if (friend.endTime > friends.get(index).startTime) {
-                    cnt++;
-                }
-
-
-                index++;
+        for (Friend friend : friends) {
+            if (friend.state == 'e') {
+                cnt--;
+            } else {
+                cnt++;
             }
-
 
             answer = Math.max(cnt, answer);
-
-            if(index < answer) {
-                break;
-            }
         }
 
         return answer;
@@ -81,7 +62,8 @@ public class Main {
         //int[][] arr = new int[n][2];
         List<Friend> friends = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            friends.add(new Friend(sc.nextInt(), sc.nextInt()));
+            friends.add(new Friend(sc.nextInt(), 's'));
+            friends.add(new Friend(sc.nextInt(), 'e'));
         }
 //        for (int i = 0; i < n; i++) {
 //

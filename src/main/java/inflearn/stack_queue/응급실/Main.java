@@ -7,7 +7,9 @@ import java.util.Queue;
 import java.util.Scanner;
 
 /**
- * 16:16 시간초과
+ * 16:16
+ * 30분 시간초과
+ * 다시 풀기
  */
 
 public class Main {
