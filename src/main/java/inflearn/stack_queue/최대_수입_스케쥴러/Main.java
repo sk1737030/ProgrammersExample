@@ -2,6 +2,7 @@ package inflearn.stack_queue.최대_수입_스케쥴러;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
@@ -29,7 +30,7 @@ public class Main {
 
     }
 
-    public int solution(int max, ArrayList<Scheduler> arr) {
+    public int solution(int max, List<Scheduler> arr) {
         int answer = 0;
         PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
         Collections.sort(arr);
