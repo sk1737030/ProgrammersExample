@@ -132,3 +132,5 @@ hs_err_pid*
 /build/
 /.gradle/
 /.gradle/
+/src/main/java/programmers/test/
+/src/test/java/programmers/test/
