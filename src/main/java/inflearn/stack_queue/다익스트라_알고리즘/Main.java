@@ -3,7 +3,6 @@ package inflearn.stack_queue.다익스트라_알고리즘;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.PriorityQueue;
-import java.util.Scanner;
 
 /**
  *  모든 정점으로의 최소 거리비용을 출력하는 ㅡ록르ㅐㅁ
@@ -61,11 +60,8 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(int n, int m, int[][] arr) {
         Main T = new Main();
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
         graph = new ArrayList<>();
         for (int i = 0; i <= n; i++) {
             graph.add(new ArrayList<>());
@@ -74,10 +70,10 @@ public class Main {
         dis = new int[n + 1];
         Arrays.fill(dis, Integer.MAX_VALUE);
 
-        for (int i = 0; i < m; i++) {
-            int a = sc.nextInt();
-            int b = sc.nextInt();
-            int c = sc.nextInt();
+        for (int i = 0; i < m - 1; i++) {
+            int a = arr[i][0];
+            int b = arr[i][1];
+            int c = arr[i][2];
             graph.get(a).add(new Edge(b, c));
         }
 
