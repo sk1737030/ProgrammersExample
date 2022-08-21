@@ -1,11 +1,11 @@
-package inflearn.stack_queue.다익스트라_알고리즘;
+package inflearn.greedy.다익스트라_알고리즘;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
 /**
- *  모든 정점으로의 최소 거리비용을 출력하는 ㅡ록르ㅐㅁ
+ *  모든 정점으로의 최소 거리비용을 출력하는 알고리즘
  *  그래프의 간선이 음수면 안된다. o(n) * 정점 개수
  *  1번 정점은 0으로 시작
  *  최소값을 찾음

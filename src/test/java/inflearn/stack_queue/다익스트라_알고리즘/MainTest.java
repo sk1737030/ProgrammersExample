@@ -1,5 +1,6 @@
 package inflearn.stack_queue.다익스트라_알고리즘;
 
+import inflearn.greedy.다익스트라_알고리즘.Main;
 import org.junit.jupiter.api.Test;
 
 class MainTest {
