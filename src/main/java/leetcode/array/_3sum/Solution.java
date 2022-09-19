@@ -10,6 +10,7 @@ public class Solution {
         Set<List<Integer>> se = new HashSet<>();
 
         Arrays.sort(nums);
+        System.out.println(Arrays.toString(nums));
 
         for (int i = 0; i < nums.length; i++) {
 
@@ -24,7 +25,10 @@ public class Solution {
                 int sum = nums[i] + nums[left] + nums[right];
                 if (sum > 0) {
                     right--;
+                    // left--;
+                    // 바깥쪽 for문에서는 하나하나씩 증가하기때문에 right를 줄이는게 맞다.반대로하면 스킵하는게 생겨버림. 케이스 -1,0,1,2
                 } else if (sum < 0) {
+                    // right--; For문은 증가하는데 반해 그냥 넘겨 버리는 숫자가 생겨버린다. 하나하나씩 앞에서 증가하는게 아닌경우가 생김
                     left++;
                 } else {
                     List<Integer> num = Arrays.asList(nums[i], nums[left], nums[right]);
