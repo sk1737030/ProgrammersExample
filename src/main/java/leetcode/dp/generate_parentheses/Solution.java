@@ -11,15 +11,18 @@ class Solution {
     }
 
     private void dfs(List<String> answer, int l, int r, int n, String temp) {
-        if (r == n && l == n) {
+        if (r == 3 && l == 3) {
             answer.add(temp);
         }
 
-        if (l < n && l >= r) {
+        if(l < r)
+            return;
+
+        if (l < n) {
             dfs(answer, l + 1, r, n, temp + "(");
         }
 
-        if (r < n) {
+        if (r < n ) {
             dfs(answer, l, r + 1, n, temp + ")");
         }
 
